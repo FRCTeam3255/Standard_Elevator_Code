@@ -6,6 +6,8 @@ package frc.robot;
 
 import java.util.Optional;
 
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
@@ -73,6 +75,7 @@ public final class Constants {
     public static final Measure<Velocity<Distance>> DRIVE_SPEED = Units.FeetPerSecond.of(15.1);
     // Physically measured from center to center of the wheels
     // Distance between Left & Right Wheels
+    // TODO: Update for 29x29
     public static final double TRACK_WIDTH = Units.Meters.convertFrom(23.75, Units.Inches);
     // Distance between Front & Back Wheels
     public static final double WHEELBASE = Units.Meters.convertFrom(23.75, Units.Inches);
@@ -86,6 +89,26 @@ public final class Constants {
     public static final double AT_ROTATION_TOLERANCE = 0.1;
     public static final Measure<Distance> AT_POINT_TOLERANCE = Units.Meters.of(0.1);
 
+  }
+
+  public static class constElevator {
+    public static TalonFXConfiguration ELEVATOR_CONFIG = new TalonFXConfiguration();
+    static {
+      ELEVATOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+
+      ELEVATOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
+      ELEVATOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Rotations.of(10).in(Units.Rotations);
+      ELEVATOR_CONFIG.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
+      ELEVATOR_CONFIG.SoftwareLimitSwitch.ReverseSoftLimitThreshold = Units.Rotations.of(0)
+          .in(Units.Rotations);
+
+      ELEVATOR_CONFIG.Slot0.GravityType = GravityTypeValue.Elevator_Static;
+      ELEVATOR_CONFIG.Slot0.kG = 0;
+      ELEVATOR_CONFIG.Slot0.kS = 0;
+      ELEVATOR_CONFIG.Slot0.kP = 0;
+      ELEVATOR_CONFIG.Slot0.kD = 0;
+
+    }
   }
 
   public static class constField {
