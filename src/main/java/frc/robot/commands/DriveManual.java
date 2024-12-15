@@ -36,8 +36,8 @@ public class DriveManual extends Command {
   @Override
   public void execute() {
     // Get Joystick inputs
-    double xVelocity = xAxis.getAsDouble() * Units.feetToMeters(prefDrivetrain.driveSpeed.getValue());
-    double yVelocity = -yAxis.getAsDouble() * Units.feetToMeters(prefDrivetrain.driveSpeed.getValue());
+    double xVelocity = xAxis.getAsDouble() * prefDrivetrain.driveSpeed.getValue();
+    double yVelocity = -yAxis.getAsDouble() * prefDrivetrain.driveSpeed.getValue();
     double rVelocity = -rotationAxis.getAsDouble() * Units.degreesToRadians(prefDrivetrain.turnSpeed.getValue());
 
     subDrivetrain.drive(new Translation2d(xVelocity, yVelocity), rVelocity, isOpenLoop);

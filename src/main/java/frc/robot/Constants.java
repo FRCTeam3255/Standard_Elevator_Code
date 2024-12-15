@@ -36,10 +36,10 @@ public final class Constants {
     // In Rotations: Obtain by aligning all of the wheels in the correct direction
     // and
     // copy-pasting the Raw Absolute Encoder value
-    public static final double FRONT_LEFT_ABS_ENCODER_OFFSET = 0.417236;
-    public static final double FRONT_RIGHT_ABS_ENCODER_OFFSET = -0.254395;
-    public static final double BACK_LEFT_ABS_ENCODER_OFFSET = 0.258789;
-    public static final double BACK_RIGHT_ABS_ENCODER_OFFSET = -0.290039;
+    public static final double FRONT_LEFT_ABS_ENCODER_OFFSET = -0.047119;
+    public static final double FRONT_RIGHT_ABS_ENCODER_OFFSET = 0.318848;
+    public static final double BACK_LEFT_ABS_ENCODER_OFFSET = -0.124756;
+    public static final double BACK_RIGHT_ABS_ENCODER_OFFSET = -0.087891;
 
     public static final InvertedValue DRIVE_MOTOR_INVERT = InvertedValue.CounterClockwise_Positive;
     public static final InvertedValue STEER_MOTOR_INVERT = InvertedValue.Clockwise_Positive;
@@ -82,6 +82,7 @@ public final class Constants {
         0.09779 * Math.PI,
         SN_SwerveConstants.MK4I.FALCON.L3.driveGearRatio,
         SN_SwerveConstants.MK4I.FALCON.L3.maxSpeedMeters);
+        
 
     public static final double AT_ROTATION_TOLERANCE = 0.1;
     public static final Measure<Distance> AT_POINT_TOLERANCE = Units.Meters.of(0.1);
