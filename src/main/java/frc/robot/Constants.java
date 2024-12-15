@@ -95,18 +95,18 @@ public final class Constants {
     public static TalonFXConfiguration ELEVATOR_CONFIG = new TalonFXConfiguration();
     static {
       ELEVATOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      ELEVATOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
       ELEVATOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
-      ELEVATOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Rotations.of(10).in(Units.Rotations);
+      ELEVATOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Units.Rotations.of(20).in(Units.Rotations);
       ELEVATOR_CONFIG.SoftwareLimitSwitch.ReverseSoftLimitEnable = true;
-      ELEVATOR_CONFIG.SoftwareLimitSwitch.ReverseSoftLimitThreshold = Units.Rotations.of(0)
+      ELEVATOR_CONFIG.SoftwareLimitSwitch.ReverseSoftLimitThreshold = Units.Rotations.of(3)
           .in(Units.Rotations);
 
       ELEVATOR_CONFIG.Slot0.GravityType = GravityTypeValue.Elevator_Static;
-      ELEVATOR_CONFIG.Slot0.kG = 0;
-      ELEVATOR_CONFIG.Slot0.kS = 0;
-      ELEVATOR_CONFIG.Slot0.kP = 0;
-      ELEVATOR_CONFIG.Slot0.kD = 0;
+      ELEVATOR_CONFIG.Slot0.kG = 0.3;
+      ELEVATOR_CONFIG.Slot0.kS = 0.4;
+      ELEVATOR_CONFIG.Slot0.kP = 1;
 
     }
   }

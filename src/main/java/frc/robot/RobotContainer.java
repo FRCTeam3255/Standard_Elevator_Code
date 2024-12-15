@@ -41,8 +41,10 @@ public class RobotContainer {
     conDriver.btn_Back
         .onTrue(Commands.runOnce(() -> subDrivetrain.resetPoseToPose(new Pose2d(0, 0, new Rotation2d()))));
 
-    conDriver.btn_Y.onTrue(Commands.runOnce(() -> subElevator.setPosition(6), subElevator));
-    conDriver.btn_A.onTrue(Commands.runOnce(() -> subElevator.setPosition(2), subElevator));
+    conDriver.btn_Y.onTrue(Commands.runOnce(() -> subElevator.setPosition(20), subElevator));
+    conDriver.btn_A.onTrue(Commands.runOnce(() -> subElevator.setPosition(4), subElevator));
+    conDriver.btn_Start
+        .onTrue(Commands.runOnce(() -> subElevator.resetSensorPosition(0), subElevator).ignoringDisable(true));
 
     // Defaults to Field-Relative, is Robot-Relative while held
     conDriver.btn_LeftBumper

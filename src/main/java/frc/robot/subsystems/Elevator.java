@@ -24,18 +24,37 @@ public class Elevator extends SubsystemBase {
     leftMotorFollower = new TalonFX(mapElevator.LEFT_ELEVATOR_CAN);
     rightMotorLeader = new TalonFX(mapElevator.RIGHT_ELEVATOR_CAN);
 
+    rightMotorLeader.getConfigurator().apply(constElevator.ELEVATOR_CONFIG);
     leftMotorFollower.getConfigurator().apply(constElevator.ELEVATOR_CONFIG);
-    leftMotorFollower.setControl(new Follower(rightMotorLeader.getDeviceID(), true));
 
   }
 
   public void setPosition(double setpoint) {
     rightMotorLeader.setControl(new PositionVoltage(setpoint));
+    leftMotorFollower.setControl(new Follower(rightMotorLeader.getDeviceID(), true));
+  }
+
+  public void resetSensorPosition(double setpoint) {
+    rightMotorLeader.setPosition(setpoint);
+    leftMotorFollower.setPosition(setpoint);
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Elevator Pos", rightMotorLeader.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Elevator/Left/Pos", leftMotorFollower.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Elevator/Left/CLO", leftMotorFollower.getClosedLoopOutput().getValueAsDouble());
+    SmartDashboard.putNumber("Elevator/Left/Ouptu", leftMotorFollower.get());
+    SmartDashboard.putBoolean("Elevator/Left/Inverted", leftMotorFollower.getInverted());
+        SmartDashboard.putNumber("Elevator/Left/Current", leftMotorFollower.getSupplyCurrent().getValueAsDouble());
+
+
+    SmartDashboard.putNumber("Elevator/Right/Pos", rightMotorLeader.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Elevator/Right/CLO", rightMotorLeader.getClosedLoopOutput().getValueAsDouble());
+    SmartDashboard.putNumber("Elevator/Right/Ouptu", rightMotorLeader.get());
+    SmartDashboard.putBoolean("Elevator/Right/Inverted", rightMotorLeader.getInverted());
+    SmartDashboard.putNumber("Elevator/Right/Current", rightMotorLeader.getSupplyCurrent().getValueAsDouble());
+
   }
 }
