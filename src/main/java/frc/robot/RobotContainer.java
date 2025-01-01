@@ -15,12 +15,14 @@ import frc.robot.RobotMap.mapControllers;
 import frc.robot.commands.DriveManual;
 import frc.robot.commands.ExampleAuto;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Elevator;
 
 public class RobotContainer {
 
   private final SN_XboxController conDriver = new SN_XboxController(mapControllers.DRIVER_USB);
 
   private final Drivetrain subDrivetrain = new Drivetrain();
+  private final Elevator subElevator = new Elevator();
 
   public RobotContainer() {
     conDriver.setLeftDeadband(constControllers.DRIVER_LEFT_STICK_DEADBAND);
@@ -38,6 +40,11 @@ public class RobotContainer {
     conDriver.btn_B.onTrue(Commands.runOnce(() -> subDrivetrain.resetModulesToAbsolute()));
     conDriver.btn_Back
         .onTrue(Commands.runOnce(() -> subDrivetrain.resetPoseToPose(new Pose2d(0, 0, new Rotation2d()))));
+
+    conDriver.btn_Y.onTrue(Commands.runOnce(() -> subElevator.setPosition(20), subElevator));
+    conDriver.btn_A.onTrue(Commands.runOnce(() -> subElevator.setPosition(4), subElevator));
+    conDriver.btn_Start
+        .onTrue(Commands.runOnce(() -> subElevator.resetSensorPosition(0), subElevator).ignoringDisable(true));
 
     // Defaults to Field-Relative, is Robot-Relative while held
     conDriver.btn_LeftBumper
